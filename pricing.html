@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseCRM Pricing | Flexible plans for modern revenue teams</title>
+  <meta name="description" content="Compare PulseCRM pricing plans. Choose the perfect package for your sales, marketing, and support teams with transparent pricing and flexible add-ons.">
+  <meta property="og:title" content="PulseCRM Pricing | Flexible plans for modern revenue teams">
+  <meta property="og:description" content="Flexible plans that scale with your revenue organization. Start for free or upgrade to unlock advanced automation and analytics.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pulsecrm.example.com/pricing">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAI3EUVDP4MZVnN1V8C4l+XwrXgVMYp0PtZVxg7V7yYug==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand" aria-label="PulseCRM Home">
+        <span class="brand-logo">P</span>
+        <span>PulseCRM</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" data-mobile-nav>
+          <li><a href="index.html" data-nav-link>Home</a></li>
+          <li><a href="home-2.html" data-nav-link>Home 2</a></li>
+          <li><a href="features.html" data-nav-link>Features</a></li>
+          <li><a href="pricing.html" class="active" data-nav-link>Pricing</a></li>
+          <li><a href="about.html" data-nav-link>About</a></li>
+          <li><a href="blog.html" data-nav-link>Blog</a></li>
+          <li><a href="contact.html" data-nav-link>Contact</a></li>
+          <li><a href="dashboard.html" data-nav-link>Dashboard</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <button class="toggle" data-theme-toggle aria-pressed="false">
+          <span data-toggle-icon>☀️</span>
+          <span class="sr-only">Toggle dark mode</span>
+        </button>
+        <a class="btn btn-outline" href="login.html">Log in</a>
+        <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-navigation" data-mobile-nav>
+      <a href="index.html" data-nav-link>Home</a>
+      <a href="home-2.html" data-nav-link>Home 2</a>
+      <a href="features.html" data-nav-link>Features</a>
+      <a href="pricing.html" data-nav-link>Pricing</a>
+      <a href="about.html" data-nav-link>About</a>
+      <a href="blog.html" data-nav-link>Blog</a>
+      <a href="contact.html" data-nav-link>Contact</a>
+      <a href="dashboard.html" data-nav-link>Dashboard</a>
+      <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div data-reveal>
+          <span class="section-subtitle">Pricing</span>
+          <h1>Simple, transparent plans that scale with your revenue engine</h1>
+          <p>Start with a free 14-day trial. Switch between monthly and annual billing anytime. No hidden fees, just CRM clarity.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#plans">Compare plans</a>
+            <a class="btn btn-outline" href="contact.html">Talk to sales</a>
+          </div>
+        </div>
+        <div class="surface-card" data-reveal>
+          <h3>Billing cadence</h3>
+          <p class="section-description">Save up to 18% with annual billing. Upgrade or downgrade whenever you need.</p>
+          <div class="hero-actions">
+            <button class="btn btn-outline" id="billing-monthly" aria-pressed="true">Monthly</button>
+            <button class="btn btn-outline" id="billing-annual" aria-pressed="false">Annual (Save 18%)</button>
+          </div>
+          <p class="text-muted">All plans include unlimited contacts, integrations, and premium support.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plans">
+      <div class="container">
+        <span class="section-subtitle">Choose your workspace</span>
+        <h2 class="section-title">Plans crafted for each stage of growth</h2>
+        <div class="pricing-grid">
+          <article class="pricing-card" data-plan="basic" data-reveal>
+            <span class="chip">Starter</span>
+            <h3>Basic</h3>
+            <p class="text-muted">Ideal for early-stage teams building repeatable revenue motions.</p>
+            <p class="price" data-monthly="$49" data-annual="$39">$49</p>
+            <p class="text-muted">per user / month</p>
+            <ul>
+              <li>Unified contact &amp; company database</li>
+              <li>Pipeline boards &amp; deal automation</li>
+              <li>Email sequencing &amp; task queues</li>
+              <li>Standard dashboards &amp; reporting</li>
+              <li>Up to 50 automation rules</li>
+            </ul>
+            <a class="btn btn-outline" href="register.html">Start free trial</a>
+          </article>
+          <article class="pricing-card highlight" data-plan="pro" data-reveal>
+            <span class="chip"><i class="fa-solid fa-star"></i> Most popular</span>
+            <h3>Pro</h3>
+            <p class="text-muted">For scaling GTM teams needing intelligence, orchestration, and collaboration.</p>
+            <p class="price" data-monthly="$89" data-annual="$72">$89</p>
+            <p class="text-muted">per user / month</p>
+            <ul>
+              <li>Everything in Basic</li>
+              <li>Advanced journey automation &amp; scoring</li>
+              <li>AI conversation intelligence &amp; coaching</li>
+              <li>Custom dashboards &amp; forecasting co-pilot</li>
+              <li>Unlimited integrations &amp; API access</li>
+            </ul>
+            <a class="btn btn-primary" href="register.html">Start free trial</a>
+          </article>
+          <article class="pricing-card" data-plan="enterprise" data-reveal>
+            <span class="chip">Enterprise</span>
+            <h3>Enterprise</h3>
+            <p class="text-muted">Purpose-built for global revenue organizations with advanced governance needs.</p>
+            <p class="price" data-monthly="Custom" data-annual="Custom">Custom</p>
+            <p class="text-muted">tailored pricing</p>
+            <ul>
+              <li>Everything in Pro + dedicated success team</li>
+              <li>Sandbox environments &amp; release controls</li>
+              <li>Data warehouse sync &amp; lakehouse export</li>
+              <li>Enterprise-grade security and compliance</li>
+              <li>24/7 concierge support &amp; SLA guarantees</li>
+            </ul>
+            <a class="btn btn-outline" href="contact.html">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="section-subtitle">Compare plans</span>
+        <h2 class="section-title">Feature matrix</h2>
+        <div class="comparison-table" role="region" aria-label="Pricing comparison table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Capabilities</th>
+                <th scope="col">Basic</th>
+                <th scope="col">Pro</th>
+                <th scope="col">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Users included</th>
+                <td>5</td>
+                <td>20</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <th scope="row">Automation rules</th>
+                <td>50</td>
+                <td>Unlimited</td>
+                <td>Unlimited + AI builder</td>
+              </tr>
+              <tr>
+                <th scope="row">Conversation intelligence</th>
+                <td><i class="fa-regular fa-circle"></i></td>
+                <td><i class="fa-solid fa-circle-check text-muted" style="color:var(--color-success);"></i></td>
+                <td><i class="fa-solid fa-circle-check" style="color:var(--color-success);"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">Dedicated success manager</th>
+                <td><i class="fa-regular fa-circle"></i></td>
+                <td><i class="fa-regular fa-circle"></i></td>
+                <td><i class="fa-solid fa-circle-check" style="color:var(--color-success);"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">Advanced security add-ons</th>
+                <td>Optional</td>
+                <td>Optional</td>
+                <td>Included</td>
+              </tr>
+              <tr>
+                <th scope="row">Data residency controls</th>
+                <td><i class="fa-regular fa-circle"></i></td>
+                <td>US/EU</td>
+                <td>Multi-region</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container grid grid-2">
+        <div class="surface-card" data-reveal>
+          <span class="chip"><i class="fa-solid fa-sparkles"></i> Add-ons</span>
+          <h3>Extend your workspace</h3>
+          <ul class="feature-card" role="list">
+            <li><strong>Pulse AI Insights</strong> · Deeper forecasting, rep coaching, and content recommendations.</li>
+            <li><strong>Data residency</strong> · Dedicated EU, UK, or APAC partitions with residency SLAs.</li>
+            <li><strong>Premium support</strong> · 24/7 access to specialists, 30-minute response time.</li>
+            <li><strong>Professional services</strong> · Onboarding, revops advisory, and custom integrations.</li>
+          </ul>
+        </div>
+        <form class="surface-card" data-validate data-reveal>
+          <span class="chip"><i class="fa-solid fa-envelope"></i> Request custom quote</span>
+          <h3>Let’s tailor a plan</h3>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="pricing-name">Full name</label>
+              <input type="text" id="pricing-name" name="name" placeholder="Alex Morgan" required>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+            <div class="input-group">
+              <label for="pricing-email">Work email</label>
+              <input type="email" id="pricing-email" name="email" placeholder="you@company.com" required>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="pricing-company">Company</label>
+              <input type="text" id="pricing-company" name="company" placeholder="Pulse Ventures" required>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+            <div class="input-group">
+              <label for="pricing-size">Team size</label>
+              <select id="pricing-size" name="size" required>
+                <option value="">Select</option>
+                <option value="1-20">1-20</option>
+                <option value="21-100">21-100</option>
+                <option value="101-250">101-250</option>
+                <option value="251-1000">251-1000</option>
+                <option value="1000+">1000+</option>
+              </select>
+              <span class="form-error" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="pricing-notes">How can we help?</label>
+            <textarea id="pricing-notes" name="notes" rows="4" placeholder="Tell us about your use case"></textarea>
+            <span class="form-error" aria-live="polite"></span>
+          </div>
+          <button class="btn btn-primary" type="submit">Request pricing</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="section-subtitle">FAQs</span>
+        <h2 class="section-title">Pricing questions, answered</h2>
+        <details class="faq-item" data-reveal>
+          <summary>Can I switch between monthly and annual billing?</summary>
+          <p>Absolutely. You can change billing cadence from the admin portal at any time. Annual contracts are prorated and we credit any unused time.</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>Do you offer nonprofit or startup discounts?</summary>
+          <p>Yes. Startups under $2M ARR receive 40% off Pro for the first year. Nonprofits receive custom pricing. Contact sales to verify eligibility.</p>
+        </details>
+        <details class="faq-item" data-reveal open>
+          <summary>What’s included in onboarding services?</summary>
+          <p>Onboarding includes data migration, automation setup, training sessions, and QA. Enterprise plans receive a dedicated solution architect.</p>
+        </details>
+        <details class="faq-item" data-reveal>
+          <summary>How secure is my data with PulseCRM?</summary>
+          <p>We’re compliant with SOC 2 Type II, ISO 27001, and GDPR. Enterprise plans unlock data residency, custom retention, and bring-your-own-key.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="brand" aria-label="PulseCRM Home">
+          <span class="brand-logo">P</span>
+          <span>PulseCRM</span>
+        </a>
+        <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
+        <div class="socials" aria-label="Social media">
+          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Resources</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="features.html">Features</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay in the loop</h4>
+        <form class="surface-card" data-validate>
+          <div class="input-group">
+            <label for="pricing-news">Work email</label>
+            <input type="email" id="pricing-news" name="email" placeholder="you@company.com" required>
+            <span class="form-error" aria-live="polite"></span>
+          </div>
+          <button class="btn btn-primary" type="submit">Join newsletter</button>
+        </form>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <span>© <span id="year">2026</span> PulseCRM. All rights reserved.</span>
+      <div class="pill-list">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="faq.html">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const monthlyBtn = document.getElementById('billing-monthly');
+    const annualBtn = document.getElementById('billing-annual');
+    const prices = document.querySelectorAll('.pricing-card .price');
+
+    function updatePricing(mode) {
+      prices.forEach((price) => {
+        const value = price.dataset[mode];
+        if (value) {
+          price.textContent = value;
+        }
+      });
+      monthlyBtn.setAttribute('aria-pressed', String(mode === 'monthly'));
+      annualBtn.setAttribute('aria-pressed', String(mode === 'annual'));
+    }
+
+    monthlyBtn?.addEventListener('click', () => updatePricing('monthly'));
+    annualBtn?.addEventListener('click', () => updatePricing('annual'));
+  </script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

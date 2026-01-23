@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create your PulseCRM account</title>
+  <meta name="description" content="Sign up for PulseCRM to unlock modern customer relationship intelligence for your revenue teams.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAI3EUVDP4MZVnN1V8C4l+XwrXgVMYp0PtZVxg7V7yYug==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card" data-reveal>
+      <a href="index.html" class="auth-logo" aria-label="Go to PulseCRM home">
+        <span class="brand-logo">P</span>
+        <span>PulseCRM</span>
+      </a>
+      <h1>Create your account</h1>
+      <p>Start your 14-day free trial. Invite teammates, explore dashboards, and automate workflows.</p>
+      <form data-validate>
+        <div class="input-group">
+          <label for="register-name">Full name</label>
+          <input type="text" id="register-name" name="name" placeholder="Jordan Lee" required>
+          <span class="form-error" aria-live="polite"></span>
+        </div>
+        <div class="input-group">
+          <label for="register-email">Work email</label>
+          <input type="email" id="register-email" name="email" placeholder="you@company.com" required>
+          <span class="form-error" aria-live="polite"></span>
+        </div>
+        <div class="input-group">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" name="password" placeholder="Create a strong password" minlength="8" required>
+          <span class="form-error" aria-live="polite"></span>
+        </div>
+        <label class="input-group" style="flex-direction:row;align-items:center;gap:0.6rem;">
+          <input type="checkbox" name="terms" required>
+          <span>I agree to the <a href="privacy.html">Privacy Policy</a> and <a href="#">Terms of Service</a>.</span>
+        </label>
+        <button class="btn btn-primary" type="submit">Create account</button>
+      </form>
+      <div class="card-divider"></div>
+      <div class="social-buttons">
+        <button class="social-button" type="button">
+          <i class="fa-brands fa-google"></i>
+          <span>Sign up with Google</span>
+        </button>
+        <button class="social-button" type="button">
+          <i class="fa-brands fa-microsoft"></i>
+          <span>Sign up with Microsoft</span>
+        </button>
+      </div>
+      <p class="auth-toggle">Already have an account? <a href="login.html">Log in</a></p>
+    </section>
+  </main>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
