@@ -128,6 +128,7 @@ main {
   font-size: clamp(2.3rem, 4vw, 3.2rem);
   line-height: 1.1;
   color: var(--color-heading);
+  text-align: center;
 }
 
 .section-description {
@@ -135,6 +136,8 @@ main {
   max-width: 680px;
   color: var(--color-muted);
   font-size: 1.08rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .grid {
@@ -382,12 +385,15 @@ main {
   font-size: clamp(2.8rem, 6vw, 4.5rem);
   line-height: 1.05;
   margin-bottom: 1.6rem;
+  text-align: center;
 }
 
 .hero p {
   font-size: 1.12rem;
   max-width: 560px;
   color: var(--color-muted);
+  margin-inline: auto;
+  text-align: center;
 }
 
 .hero-actions {
@@ -395,6 +401,7 @@ main {
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
+  justify-content: center;
 }
 
 .hero-demo {
@@ -441,7 +448,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
 }
 
 .feature-card img {
@@ -482,6 +490,8 @@ main {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .pricing-card.highlight {
@@ -560,6 +570,8 @@ thead th {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  align-items: center;
+  text-align: center;
 }
 
 .testimonial-card blockquote {
@@ -572,6 +584,7 @@ thead th {
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
 }
 
 .avatar {
@@ -719,6 +732,7 @@ thead th {
 form {
   display: grid;
   gap: 1.1rem;
+  justify-items: center;
 }
 
 .form-row {
@@ -735,6 +749,8 @@ form {
 label {
   font-weight: 600;
   color: var(--color-heading);
+  text-align: start;
+  width: 100%;
 }
 
 input,
@@ -891,6 +907,7 @@ form.is-loading button[type="submit"] {
   border: 1px solid rgba(37, 99, 235, 0.2);
   box-shadow: 0 40px 90px rgba(15, 23, 42, 0.16);
   padding: clamp(2.4rem, 4vw, 3rem);
+  text-align: center;
 }
 
 .auth-logo {
@@ -908,6 +925,10 @@ form.is-loading button[type="submit"] {
 .auth-card h1 {
   text-align: center;
   margin: 1.4rem 0 0.4rem;
+}
+
+h1 {
+  text-align: center;
 }
 
 .auth-card p {
@@ -1312,6 +1333,7 @@ form.is-loading button[type="submit"] {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
