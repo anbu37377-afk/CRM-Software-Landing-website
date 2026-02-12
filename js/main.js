@@ -2,6 +2,7 @@
 
 const STORAGE_KEYS = {
   theme: 'crm-theme-preference',
+  themeExplicit: 'crm-theme-explicit',
   rtl: 'crm-rtl-enabled'
 };
 
@@ -9,7 +10,7 @@ const SELECTORS = {
   themeToggle: '[data-theme-toggle]',
   rtlToggle: '[data-rtl-toggle]',
   mobileToggle: '[data-mobile-toggle]',
-  mobileNav: '[data-mobile-nav]',
+  mobileNav: '#mobile-navigation',
   navLinks: 'a[data-nav-link]',
   lazyImages: 'img[data-lazy]',
   forms: 'form[data-validate]'
@@ -24,8 +25,8 @@ function initApp() {
   const root = document.documentElement;
   const body = document.body;
 
-  const initialTheme = getStoredTheme() || getPreferredTheme();
-  applyTheme(initialTheme, root);
+  const initialTheme = getInitialTheme(root);
+  applyTheme(initialTheme, root, { persist: false });
 
   const rtlEnabled = getStoredRTL();
   applyRTL(rtlEnabled, body);
@@ -40,16 +41,26 @@ function initApp() {
 }
 
 function getStoredTheme() {
-  return localStorage.getItem(STORAGE_KEYS.theme);
+  const theme = localStorage.getItem(STORAGE_KEYS.theme);
+  return theme === 'dark' || theme === 'light' ? theme : null;
 }
 
-function getPreferredTheme() {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+function getInitialTheme(root) {
+  const savedTheme = getStoredTheme();
+  const isExplicitChoice = localStorage.getItem(STORAGE_KEYS.themeExplicit) === 'true';
+  if (savedTheme && isExplicitChoice) {
+    return savedTheme;
+  }
+  return root.getAttribute(ATTRS.theme) === 'dark' ? 'dark' : 'light';
 }
 
-function applyTheme(theme, root) {
-  root.setAttribute(ATTRS.theme, theme);
-  localStorage.setItem(STORAGE_KEYS.theme, theme);
+function applyTheme(theme, root, { persist = true } = {}) {
+  const normalizedTheme = theme === 'dark' ? 'dark' : 'light';
+  root.setAttribute(ATTRS.theme, normalizedTheme);
+  if (persist) {
+    localStorage.setItem(STORAGE_KEYS.theme, normalizedTheme);
+    localStorage.setItem(STORAGE_KEYS.themeExplicit, 'true');
+  }
 }
 
 function bindThemeToggle(root) {
@@ -104,15 +115,17 @@ function bindMobileNavigation() {
   const mobileNav = document.querySelector(SELECTORS.mobileNav);
   const sidebar = document.querySelector('[data-sidebar]');
 
-  if (!toggleBtn) return;
+  if (!toggleBtn || !mobileNav) return;
 
   const closeNav = () => {
-    mobileNav?.classList.remove('open');
-    toggleBtn?.setAttribute('aria-expanded', 'false');
+    mobileNav.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
   };
 
+  closeNav();
+
   toggleBtn.addEventListener('click', () => {
-    const isOpen = mobileNav?.classList.toggle('open');
+    const isOpen = mobileNav.classList.toggle('open');
     toggleBtn.setAttribute('aria-expanded', String(Boolean(isOpen)));
 
     if (sidebar) {
@@ -127,9 +140,23 @@ function bindMobileNavigation() {
     });
   });
 
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+    if (!mobileNav.classList.contains('open')) return;
+    if (mobileNav.contains(target) || toggleBtn.contains(target)) return;
+    closeNav();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeNav();
+    }
+  });
+
   window.addEventListener('resize', () => {
     if (window.innerWidth > 1024) {
-      mobileNav?.classList.remove('open');
+      mobileNav.classList.remove('open');
       toggleBtn.setAttribute('aria-expanded', 'false');
       sidebar?.classList.remove('open');
     }

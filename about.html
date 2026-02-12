@@ -40,6 +40,7 @@
           <span class="sr-only">Toggle dark mode</span>
         </button>
         <a class="btn btn-outline" href="login.html">Log in</a>
+        <a class="btn btn-primary" href="register.html">Sign up</a>
         <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa-solid fa-bars"></i>
@@ -56,6 +57,7 @@
       <a href="contact.html" data-nav-link>Contact</a>
       <a href="dashboard.html" data-nav-link>Dashboard</a>
       <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+      <a href="register.html" class="btn btn-primary" data-nav-link>Sign up</a>
     </div>
   </header>
 
@@ -143,31 +145,31 @@
         <span class="section-subtitle">Leadership</span>
         <h2 class="section-title">Meet the humans behind PulseCRM</h2>
         <p class="section-description">We are product builders, revenue operators, designers, and data scientists obsessed with unlocking better customer relationships.</p>
-        <div class="grid grid-3">
-          <article class="surface-card" data-reveal>
+        <div class="grid grid-3 leadership-grid">
+          <article class="surface-card leadership-card" data-reveal>
             <img src="https://i.pravatar.cc/300?img=5" alt="Portrait of Maya Alvarez" class="avatar" style="width:72px;height:72px;">
             <h3>Maya Alvarez</h3>
-            <p class="text-muted">Co-founder &amp; CEO</p>
+            <p class="text-muted leadership-role">Co-founder &amp; CEO</p>
             <p>Former VP Revenue Operations at Apex Cloud. Leads product vision and customer-centric innovation.</p>
             <div class="pill-list">
               <span class="pill">Product Strategy</span>
               <span class="pill">Culture</span>
             </div>
           </article>
-          <article class="surface-card" data-reveal>
+          <article class="surface-card leadership-card" data-reveal>
             <img src="https://i.pravatar.cc/300?img=12" alt="Portrait of Ravi Kapoor" class="avatar" style="width:72px;height:72px;">
             <h3>Ravi Kapoor</h3>
-            <p class="text-muted">Co-founder &amp; CTO</p>
+            <p class="text-muted leadership-role">Co-founder &amp; CTO</p>
             <p>Scaled data platforms at Lightspeed CRM. Oversees engineering, infrastructure, and security.</p>
             <div class="pill-list">
               <span class="pill">Platform</span>
               <span class="pill">Security</span>
             </div>
           </article>
-          <article class="surface-card" data-reveal>
+          <article class="surface-card leadership-card" data-reveal>
             <img src="https://i.pravatar.cc/300?img=29" alt="Portrait of Alana Brooks" class="avatar" style="width:72px;height:72px;">
             <h3>Alana Brooks</h3>
-            <p class="text-muted">Chief Customer Officer</p>
+            <p class="text-muted leadership-role">Chief Customer Officer</p>
             <p>Former Head of Success at SignalAI. Champions best-in-class onboarding, training, and support.</p>
             <div class="pill-list">
               <span class="pill">Customer Success</span>
@@ -180,11 +182,11 @@
 
     <section class="section">
       <div class="container grid grid-2">
-        <div class="surface-card" data-reveal>
+        <div class="surface-card life-card" data-reveal>
           <h3>Life at PulseCRM</h3>
-          <p class="section-description">We support a distributed team with intentional rituals, inclusive benefits, and opportunities to grow. Remote-first doesn't mean working alone—we invest in moments to learn, build, and celebrate together.</p>
-          <ul class="pill-list">
-            <li class="pill">Quarterly in-person summits</li>
+          <p class="section-description">Remote-first, collaborative, and built for a sustainable pace. We balance focus time with team rituals so people can learn, ship great work, and recharge.</p>
+          <ul class="pill-list life-points">
+            <li class="pill">Quarterly summits</li>
             <li class="pill">Learning stipend</li>
             <li class="pill">Recharge weeks</li>
             <li class="pill">Wellness allowance</li>
@@ -215,9 +217,9 @@
         </a>
         <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
         <div class="socials" aria-label="Social media">
-          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="PulseCRM on LinkedIn"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A1.97 1.97 0 1 0 5.25 6.94 1.97 1.97 0 0 0 5.25 3zM20.44 13.7c0-3.4-1.81-4.98-4.22-4.98-1.94 0-2.8 1.07-3.28 1.82V8.5H9.56c.05 1.35 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.39 1.96-1.39 1.38 0 1.93 1.05 1.93 2.59V20H20.44v-6.3z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.29 19.535h2.04L6.486 3.2H4.298l13.313 17.488Z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
         </div>
       </div>
       <div>
@@ -265,3 +267,4 @@
   <script src="js/main.js" defer></script>
 </body>
 </html>
+

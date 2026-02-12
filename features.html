@@ -40,6 +40,7 @@
           <span class="sr-only">Toggle dark mode</span>
         </button>
         <a class="btn btn-outline" href="login.html">Log in</a>
+        <a class="btn btn-primary" href="register.html">Sign up</a>
         <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa-solid fa-bars"></i>
@@ -56,6 +57,7 @@
       <a href="contact.html" data-nav-link>Contact</a>
       <a href="dashboard.html" data-nav-link>Dashboard</a>
       <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+      <a href="register.html" class="btn btn-primary" data-nav-link>Sign up</a>
     </div>
   </header>
 
@@ -88,32 +90,52 @@
       <div class="container">
         <span class="section-subtitle">Sales execution</span>
         <h2 class="section-title">Close deals faster with guided workflows</h2>
-        <div class="grid grid-3">
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-route"></i></span>
+        <div class="grid grid-3 sales-execution-grid">
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <circle cx="6" cy="6" r="2"></circle>
+                <circle cx="18" cy="6" r="2"></circle>
+                <circle cx="12" cy="18" r="2"></circle>
+                <path d="M8 6h8M7.5 7.8l3.4 7M16.5 7.8l-3.4 7"></path>
+              </svg>
+            </span>
             <h3>Deal Pathing</h3>
             <p>Automate stage progression with intelligent triggers, recommended actions, and stakeholder reminders.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Adaptive stage criteria</li>
               <li>Automated approval workflows</li>
               <li>Sales playbook templates</li>
             </ul>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-user-plus"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M19 8v6M16 11h6"></path>
+              </svg>
+            </span>
             <h3>Account Hub</h3>
             <p>Unify executive briefs, relationship maps, mutual action plans, and touchpoints in one view.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Mutual action planning</li>
               <li>Role-based notes and tasks</li>
               <li>Relationship mapping</li>
             </ul>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-headphones-simple"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M4 12a8 8 0 0 1 16 0"></path>
+                <rect x="2.5" y="12" width="4.5" height="8" rx="2"></rect>
+                <rect x="17" y="12" width="4.5" height="8" rx="2"></rect>
+                <path d="M12 20h4"></path>
+              </svg>
+            </span>
             <h3>Conversation Intelligence</h3>
             <p>Transcribe every call, detect intent, and surface coachable moments with AI-curated insights.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Real-time cue cards</li>
               <li>Topic trend analysis</li>
               <li>Automatic follow-up summaries</li>
@@ -128,19 +150,19 @@
         <span class="section-subtitle">Marketing automation</span>
         <h2 class="section-title">Attract, score, and nurture the right buyers</h2>
         <div class="grid grid-2">
-          <div class="surface-card" data-reveal>
+          <div class="surface-card marketing-card" data-reveal>
             <h3>Lifecycle journeys</h3>
             <p class="section-description">Design journeys that react to behavior instantly: send hyper-personalized emails, trigger SDR alerts, and sync with ad platforms automatically.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Drag-and-drop journey builder</li>
               <li>Segment builder with account intent</li>
               <li>Marketing-to-sales handoff scoring</li>
             </ul>
           </div>
-          <div class="surface-card" data-reveal>
+          <div class="surface-card marketing-card" data-reveal>
             <h3>Content intelligence</h3>
             <p class="section-description">Measure the revenue impact of every asset with contact-level analytics and ABM dashboards.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Real-time engagement dashboards</li>
               <li>Predictive content recommendations</li>
               <li>SEO and channel insights in one view</li>
@@ -154,32 +176,49 @@
       <div class="container">
         <span class="section-subtitle">Customer success</span>
         <h2 class="section-title">Deliver proactive support and retention plays</h2>
-        <div class="grid grid-3">
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-life-ring"></i></span>
+        <div class="grid grid-3 customer-success-grid">
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 4v5M20 12h-5M12 20v-5M4 12h5"></path>
+              </svg>
+            </span>
             <h3>Success Boards</h3>
             <p>Monitor onboarding checkpoints, health scores, and expansion pipeline with shared visibility.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Automated onboarding journeys</li>
               <li>Renewal risk alerts</li>
               <li>Expansion opportunity tracking</li>
             </ul>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-comments-dollar"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M21 12a8.5 8.5 0 0 1-8.5 8.5H4l2.2-3.3A8.5 8.5 0 1 1 21 12Z"></path>
+                <path d="M9 12h6M12 9v6"></path>
+              </svg>
+            </span>
             <h3>Revenue Signals</h3>
             <p>Stream product usage trends into playbooks that notify CSMs and sales when accounts are ready for upsell.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Usage-based scoring</li>
               <li>Renewal health dashboard</li>
               <li>Lifecycle automation for CS</li>
             </ul>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-people-group"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <circle cx="8" cy="9" r="3"></circle>
+                <circle cx="16" cy="8" r="2.5"></circle>
+                <path d="M3.5 19a4.5 4.5 0 0 1 9 0M13 18a3.8 3.8 0 0 1 7.5 0"></path>
+              </svg>
+            </span>
             <h3>Customer Communities</h3>
             <p>Host forums, webinars, and knowledge bases with built-in analytics to encourage peer-to-peer learning.</p>
-            <ul class="feature-card" role="list">
+            <ul class="feature-list" role="list">
               <li>Moderation tools</li>
               <li>Event &amp; webinar center</li>
               <li>In-product feedback loops</li>
@@ -232,19 +271,34 @@
       <div class="container">
         <span class="section-subtitle">Security &amp; compliance</span>
         <h2 class="section-title">Enterprise-grade trust baked in</h2>
-        <div class="grid grid-3">
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-shield-halved"></i></span>
+        <div class="grid grid-3 security-grid">
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M12 3 5 6v5c0 5 3.4 8.7 7 10 3.6-1.3 7-5 7-10V6l-7-3Z"></path>
+                <path d="m9.3 12.2 1.8 1.8 3.6-3.6"></path>
+              </svg>
+            </span>
             <h3>Data Protection</h3>
             <p>Encryption at rest and in transit, with granular field-level permissions and audit trails.</p>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-file-contract"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M7 3h8l4 4v14H7z"></path>
+                <path d="M15 3v4h4M10 12h6M10 16h6"></path>
+              </svg>
+            </span>
             <h3>Compliance</h3>
             <p>SOC 2 Type II, ISO 27001, GDPR, and HIPAA-ready controls that align with your legal requirements.</p>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-cloud-arrow-up"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M7 18a4 4 0 1 1 .8-7.9A5 5 0 0 1 17.5 9a3.5 3.5 0 1 1 .5 7"></path>
+                <path d="m12 18v-7M9.5 13.5 12 11l2.5 2.5"></path>
+              </svg>
+            </span>
             <h3>Open Extensibility</h3>
             <p>Robust REST and GraphQL APIs, webhooks, and event streams to integrate with your data stack.</p>
           </article>
@@ -278,9 +332,9 @@
         </a>
         <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
         <div class="socials" aria-label="Social media">
-          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="PulseCRM on LinkedIn"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A1.97 1.97 0 1 0 5.25 6.94 1.97 1.97 0 0 0 5.25 3zM20.44 13.7c0-3.4-1.81-4.98-4.22-4.98-1.94 0-2.8 1.07-3.28 1.82V8.5H9.56c.05 1.35 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.39 1.96-1.39 1.38 0 1.93 1.05 1.93 2.59V20H20.44v-6.3z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.29 19.535h2.04L6.486 3.2H4.298l13.313 17.488Z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
         </div>
       </div>
       <div>
@@ -328,3 +382,5 @@
   <script src="js/main.js" defer></script>
 </body>
 </html>
+
+

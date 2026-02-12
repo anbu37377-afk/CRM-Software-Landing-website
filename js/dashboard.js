@@ -1,94 +1,192 @@
-'use strict';
+"use strict";
 
+const THEME_KEY = "pulsecrm_dashboard_theme";
 const charts = {};
-let tasks = [];
-let contacts = [];
-let activityQueue = [];
-let feedInterval;
 
-window.addEventListener('DOMContentLoaded', () => {
+function restorePageScroll() {
+  document.documentElement.style.removeProperty("overflow");
+  document.documentElement.style.removeProperty("height");
+  document.body.style.removeProperty("overflow");
+  document.body.style.removeProperty("height");
+}
+
+function createId() {
+  if (globalThis.crypto && typeof globalThis.crypto.randomUUID === "function") {
+    return globalThis.crypto.randomUUID();
+  }
+  return `id-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+const state = {
+  tasks: [
+    { id: createId(), title: "Review Q1 enterprise pipeline", done: false },
+    { id: createId(), title: "Finalize onboarding checklist", done: true },
+    { id: createId(), title: "Follow up with Northwind sponsor", done: false }
+  ],
+  activity: [
+    { name: "Daniel King", action: "launched nurture campaign for APAC", time: "6 min ago" },
+    { name: "Alana Brooks", action: "closed renewal with WellnessWorks", time: "2 min ago" },
+    { name: "Ravi Kapoor", action: "updated pipeline forecast for Q2", time: "12 min ago" }
+  ]
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  restorePageScroll();
+  initTheme();
+  initMenu();
   initMetrics();
   initCharts();
   initTasks();
-  initContacts();
-  initPipelineDrag();
   initActivityFeed();
-  bindTopbarActions();
 });
 
-function initMetrics() {
-  document.querySelectorAll('[data-metric-target]').forEach((metric) => {
-    const target = Number(metric.dataset.metricTarget || 0);
-    const formatter = metric.dataset.metricFormat || 'number';
-    animateCounter(metric, target, formatter);
+function initTheme() {
+  const stored = localStorage.getItem(THEME_KEY);
+  const theme = stored === "dark" ? "dark" : "light";
+  setTheme(theme);
+
+  document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+    toggle.checked = theme === "dark";
+    toggle.addEventListener("change", () => {
+      setTheme(toggle.checked ? "dark" : "light");
+      document.querySelectorAll("[data-theme-toggle]").forEach((el) => {
+        el.checked = toggle.checked;
+      });
+      initCharts();
+    });
   });
 }
 
-function animateCounter(element, target, format = 'number') {
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+function initMenu() {
+  const openBtn = document.querySelector("[data-menu-toggle]");
+  const closeBtn = document.querySelector("[data-menu-close]");
+  const menu = document.getElementById("mobile-menu");
+  const overlay = document.querySelector("[data-overlay]");
+
+  if (!openBtn || !menu) return;
+
+  menu.classList.remove("is-open");
+  menu.setAttribute("aria-hidden", "true");
+  overlay?.classList.remove("is-open");
+  openBtn.setAttribute("aria-expanded", "false");
+  restorePageScroll();
+
+  const openMenu = () => {
+    menu.classList.add("is-open");
+    overlay?.classList.add("is-open");
+    menu.setAttribute("aria-hidden", "false");
+    openBtn.setAttribute("aria-expanded", "true");
+  };
+
+  const closeMenu = () => {
+    menu.classList.remove("is-open");
+    overlay?.classList.remove("is-open");
+    menu.setAttribute("aria-hidden", "true");
+    openBtn.setAttribute("aria-expanded", "false");
+    restorePageScroll();
+  };
+
+  openBtn.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  overlay?.addEventListener("click", closeMenu);
+  menu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("is-open")) {
+      closeMenu();
+    }
+  });
+}
+
+function initMetrics() {
+  document.querySelectorAll("[data-metric-target]").forEach((metric) => {
+    const target = Number(metric.dataset.metricTarget || 0);
+    const format = metric.dataset.metricFormat || "number";
+    animateCounter(metric, target, format);
+  });
+}
+
+function animateCounter(el, target, format) {
+  const steps = 50;
+  const duration = 1300;
   let current = 0;
-  const duration = 1500;
-  const steps = 60;
-  const increment = target / steps;
+  const stepValue = target / steps;
   const interval = duration / steps;
 
   const timer = setInterval(() => {
-    current += increment;
+    current += stepValue;
     if (current >= target) {
       current = target;
       clearInterval(timer);
     }
-    element.textContent = formatValue(current, format);
+    el.textContent = formatMetric(current, format);
   }, interval);
 }
 
-function formatValue(value, format) {
-  if (format === 'currency') {
-    return `$${Math.round(value).toLocaleString()}`;
-  }
-  if (format === 'percent') {
-    return `${value.toFixed(1)}%`;
-  }
-  if (format === 'decimal') {
-    return value.toFixed(1);
-  }
+function formatMetric(value, format) {
+  if (format === "currency") return `$${Math.round(value).toLocaleString()}`;
+  if (format === "percent") return `${value.toFixed(1)}%`;
   return Math.round(value).toLocaleString();
 }
 
 function initCharts() {
   if (!window.Chart) return;
 
-  const salesCtx = document.getElementById('salesChart');
-  if (salesCtx) {
-    charts.sales = new Chart(salesCtx, {
-      type: 'line',
+  Object.values(charts).forEach((chart) => chart.destroy());
+
+  const styles = getComputedStyle(document.documentElement);
+  const textColor = styles.getPropertyValue("--text").trim();
+  const mutedColor = styles.getPropertyValue("--muted").trim();
+  const gridColor = styles.getPropertyValue("--border").trim();
+
+  const sharedScaleOptions = {
+    ticks: { color: mutedColor, font: { size: 11 } },
+    grid: { color: gridColor }
+  };
+
+  const sharedChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    events: ["mousemove", "mouseout", "click", "touchstart"]
+  };
+
+  const sales = document.getElementById("salesChart");
+  if (sales) {
+    charts.sales = new Chart(sales, {
+      type: "line",
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         datasets: [
           {
-            label: 'Closed Won',
-            data: [72, 84, 79, 95, 104, 112, 123, 139],
-            borderColor: '#2563eb',
-            backgroundColor: 'rgba(37, 99, 235, 0.14)',
-            tension: 0.38,
+            label: "Revenue ($K)",
+            data: [72, 84, 79, 95, 104, 113, 126, 139],
+            borderColor: "#2563eb",
+            backgroundColor: "rgba(37, 99, 235, 0.14)",
             fill: true,
-            borderWidth: 3
+            tension: 0.34,
+            borderWidth: 2.5,
+            pointRadius: 2.5
           }
         ]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
+        ...sharedChartOptions,
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
+          tooltip: { mode: "index", intersect: false }
         },
         scales: {
-          x: {
-            grid: { display: false }
-          },
+          x: { ...sharedScaleOptions, grid: { display: false } },
           y: {
-            grid: { color: 'rgba(148, 163, 184, 0.15)' },
+            ...sharedScaleOptions,
             ticks: {
-              callback: (value) => `$${value}k`
+              ...sharedScaleOptions.ticks,
+              callback: (val) => `$${val}k`
             }
           }
         }
@@ -96,60 +194,68 @@ function initCharts() {
     });
   }
 
-  const pipelineCtx = document.getElementById('pipelineChart');
-  if (pipelineCtx) {
-    charts.pipeline = new Chart(pipelineCtx, {
-      type: 'bar',
+  const pipeline = document.getElementById("pipelineChart");
+  if (pipeline) {
+    charts.pipeline = new Chart(pipeline, {
+      type: "bar",
       data: {
-        labels: ['Prospect', 'Qualified', 'Discovery', 'Proposal', 'Negotiation', 'Closed'],
+        labels: ["Prospect", "Qualified", "Discovery", "Proposal", "Negotiation"],
         datasets: [
           {
-            label: 'Pipeline ($K)',
-            data: [58, 74, 66, 82, 45, 96],
-            backgroundColor: 'rgba(124, 58, 237, 0.6)',
-            borderRadius: 10,
+            label: "Pipeline ($K)",
+            data: [58, 74, 66, 82, 47],
+            backgroundColor: "rgba(124, 58, 237, 0.68)",
+            borderRadius: 8,
             borderSkipped: false
           }
         ]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        ...sharedChartOptions,
+        plugins: {
+          legend: { display: false }
+        },
         scales: {
+          x: { ...sharedScaleOptions, grid: { display: false } },
           y: {
-            grid: { color: 'rgba(148, 163, 184, 0.12)' },
-            ticks: { callback: (value) => `$${value}k` }
-          },
-          x: {
-            grid: { display: false }
+            ...sharedScaleOptions,
+            ticks: {
+              ...sharedScaleOptions.ticks,
+              callback: (val) => `$${val}k`
+            }
           }
         }
       }
     });
   }
 
-  const leadCtx = document.getElementById('leadChart');
-  if (leadCtx) {
-    charts.leads = new Chart(leadCtx, {
-      type: 'doughnut',
+  const lead = document.getElementById("leadChart");
+  if (lead) {
+    charts.lead = new Chart(lead, {
+      type: "doughnut",
       data: {
-        labels: ['Inbound', 'Outbound', 'Partners', 'Events'],
+        labels: ["Inbound", "Outbound", "Partners", "Events"],
         datasets: [
           {
             data: [42, 27, 18, 13],
-            backgroundColor: ['#2563eb', '#22d3ee', '#7c3aed', '#f59e0b'],
+            backgroundColor: ["#2563eb", "#06b6d4", "#7c3aed", "#f59e0b"],
             borderWidth: 0
           }
         ]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '60%',
+        ...sharedChartOptions,
+        cutout: "63%",
         plugins: {
           legend: {
-            position: 'bottom'
+            position: "bottom",
+            labels: {
+              color: textColor,
+              usePointStyle: true,
+              boxWidth: 10,
+              boxHeight: 10,
+              padding: 12
+            }
           }
         }
       }
@@ -158,284 +264,116 @@ function initCharts() {
 }
 
 function initTasks() {
-  const tasksContainer = document.querySelector('[data-task-list]');
-  const taskForm = document.querySelector('[data-task-form]');
-  const taskInput = document.querySelector('[data-task-input]');
+  const form = document.querySelector("[data-task-form]");
+  const input = document.querySelector("[data-task-input]");
+  const list = document.querySelector("[data-task-list]");
+  if (!form || !input || !list) return;
 
-  if (!tasksContainer || !taskForm || !taskInput) return;
+  const render = () => {
+    list.innerHTML = "";
 
-  tasks = [
-    { id: crypto.randomUUID(), name: 'Review Q1 enterprise pipeline', completed: false },
-    { id: crypto.randomUUID(), name: 'Update onboarding playbook for beta cohort', completed: true },
-    { id: crypto.randomUUID(), name: 'Send follow-up to Northwind exec sponsor', completed: false }
-  ];
-
-  renderTasks(tasksContainer);
-
-  taskForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const name = taskInput.value.trim();
-    if (!name) return;
-
-    tasks.unshift({ id: crypto.randomUUID(), name, completed: false });
-    renderTasks(tasksContainer);
-    taskInput.value = '';
-    taskInput.focus();
-  });
-}
-
-function renderTasks(container) {
-  container.innerHTML = '';
-  if (!tasks.length) {
-    container.innerHTML = '<p class="text-muted">No tasks yet. Add your first task.</p>';
-    return;
-  }
-
-  tasks.forEach((task) => {
-    const item = document.createElement('div');
-    item.className = 'task-item';
-    item.setAttribute('data-task-id', task.id);
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = task.completed;
-    checkbox.addEventListener('change', () => toggleTaskComplete(task.id));
-
-    const label = document.createElement('span');
-    label.textContent = task.name;
-    if (task.completed) {
-      label.style.textDecoration = 'line-through';
-      label.style.color = 'var(--color-muted)';
+    if (!state.tasks.length) {
+      const empty = document.createElement("p");
+      empty.textContent = "No tasks yet. Add your first task.";
+      empty.style.color = "var(--muted)";
+      empty.style.fontSize = "0.92rem";
+      list.appendChild(empty);
+      return;
     }
 
-    const deleteBtn = document.createElement('button');
-    deleteBtn.type = 'button';
-    deleteBtn.className = 'btn btn-ghost';
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.addEventListener('click', () => deleteTask(task.id));
+    state.tasks.forEach((task) => {
+      const item = document.createElement("div");
+      item.className = "crm-task-item";
+      item.dataset.id = task.id;
 
-    item.append(checkbox, label, deleteBtn);
-    container.appendChild(item);
-  });
-}
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = task.done;
 
-function toggleTaskComplete(id) {
-  tasks = tasks.map((task) => (task.id === id ? { ...task, completed: !task.completed } : task));
-  renderTasks(document.querySelector('[data-task-list]'));
-}
+      const label = document.createElement("span");
+      label.textContent = task.title;
+      if (task.done) {
+        label.style.textDecoration = "line-through";
+        label.style.color = "var(--muted)";
+      }
 
-function deleteTask(id) {
-  tasks = tasks.filter((task) => task.id !== id);
-  renderTasks(document.querySelector('[data-task-list]'));
-}
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.textContent = "Delete";
 
-function initContacts() {
-  const tableBody = document.querySelector('[data-contacts-body]');
-  if (!tableBody) return;
+      checkbox.addEventListener("change", () => {
+        task.done = checkbox.checked;
+        render();
+      });
 
-  contacts = [
-    { id: 1, name: 'Jamie Chen', company: 'Luma Studios', email: 'jamie@lumastudios.com', stage: 'Proposal', value: 58000, lastActivity: '2h ago' },
-    { id: 2, name: 'Malik Rivers', company: 'Northwind Cloud', email: 'malik@northwind.io', stage: 'Discovery', value: 42000, lastActivity: '1d ago' },
-    { id: 3, name: 'Sofia Patel', company: 'Brightline Logistics', email: 'sofia@brightline.io', stage: 'Negotiation', value: 76000, lastActivity: '3h ago' },
-    { id: 4, name: 'Lena Ortiz', company: 'Horizon AI', email: 'lena@horizon.ai', stage: 'Qualified', value: 32000, lastActivity: '5h ago' },
-    { id: 5, name: 'Priya Desai', company: 'FinEdge', email: 'priya@finedge.com', stage: 'Proposal', value: 54000, lastActivity: '8h ago' },
-    { id: 6, name: 'Alex Morgan', company: 'Atlas Robotics', email: 'alex@atlasrobotics.com', stage: 'Discovery', value: 28000, lastActivity: '1d ago' },
-    { id: 7, name: 'Haruto Sato', company: 'ZenSpace', email: 'haruto@zenspace.jp', stage: 'Negotiation', value: 91000, lastActivity: '30m ago' }
-  ];
+      remove.addEventListener("click", () => {
+        state.tasks = state.tasks.filter((entry) => entry.id !== task.id);
+        render();
+      });
 
-  const searchInput = document.querySelector('[data-contacts-search]');
-  const sortButtons = document.querySelectorAll('[data-sort-key]');
-  const prevBtn = document.querySelector('[data-contacts-prev]');
-  const nextBtn = document.querySelector('[data-contacts-next]');
-  const pageIndicator = document.querySelector('[data-contacts-page]');
-
-  const state = {
-    query: '',
-    sortKey: 'name',
-    sortDir: 'asc',
-    page: 1,
-    pageSize: 5
+      item.append(checkbox, label, remove);
+      list.appendChild(item);
+    });
   };
 
-  const applyState = () => {
-    let filtered = contacts.filter((contact) => {
-      const haystack = `${contact.name} ${contact.company} ${contact.email} ${contact.stage}`.toLowerCase();
-      return haystack.includes(state.query.toLowerCase());
-    });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const title = input.value.trim();
+    if (!title) return;
 
-    filtered = filtered.sort((a, b) => {
-      const valueA = a[state.sortKey];
-      const valueB = b[state.sortKey];
-
-      if (typeof valueA === 'number' && typeof valueB === 'number') {
-        return state.sortDir === 'asc' ? valueA - valueB : valueB - valueA;
-      }
-      return state.sortDir === 'asc'
-        ? String(valueA).localeCompare(String(valueB))
-        : String(valueB).localeCompare(String(valueA));
-    });
-
-    const totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
-    state.page = Math.min(state.page, totalPages);
-    const start = (state.page - 1) * state.pageSize;
-    const pageItems = filtered.slice(start, start + state.pageSize);
-
-    renderContacts(tableBody, pageItems);
-    pageIndicator.textContent = `${state.page} / ${totalPages}`;
-    prevBtn.disabled = state.page === 1;
-    nextBtn.disabled = state.page === totalPages;
-  };
-
-  searchInput?.addEventListener('input', (event) => {
-    state.query = event.target.value;
-    state.page = 1;
-    applyState();
+    state.tasks.unshift({ id: createId(), title, done: false });
+    input.value = "";
+    render();
   });
 
-  sortButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const key = button.dataset.sortKey;
-      if (state.sortKey === key) {
-        state.sortDir = state.sortDir === 'asc' ? 'desc' : 'asc';
-      } else {
-        state.sortKey = key;
-        state.sortDir = 'asc';
-      }
-      sortButtons.forEach((btn) => btn.setAttribute('aria-sort', 'none'));
-      button.setAttribute('aria-sort', state.sortDir === 'asc' ? 'ascending' : 'descending');
-      applyState();
-    });
-  });
-
-  prevBtn?.addEventListener('click', () => {
-    state.page = Math.max(1, state.page - 1);
-    applyState();
-  });
-
-  nextBtn?.addEventListener('click', () => {
-    state.page += 1;
-    applyState();
-  });
-
-  applyState();
-}
-
-function renderContacts(container, items) {
-  container.innerHTML = '';
-  items.forEach((contact) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>
-        <div class="media-object">
-          <img src="https://i.pravatar.cc/60?u=${encodeURIComponent(contact.email)}" alt="Avatar of ${contact.name}">
-          <div>
-            <strong>${contact.name}</strong>
-            <p class="text-muted">${contact.email}</p>
-          </div>
-        </div>
-      </td>
-      <td>${contact.company}</td>
-      <td>${contact.stage}</td>
-      <td>$${contact.value.toLocaleString()}</td>
-      <td>${contact.lastActivity}</td>
-      <td>
-        <div class="table-actions">
-          <button type="button" aria-label="View ${contact.name}"><i class="fa-regular fa-eye"></i></button>
-          <button type="button" aria-label="Message ${contact.name}"><i class="fa-regular fa-paper-plane"></i></button>
-        </div>
-      </td>
-    `;
-    container.appendChild(row);
-  });
-}
-
-function initPipelineDrag() {
-  const cards = document.querySelectorAll('[data-pipeline-card]');
-  const columns = document.querySelectorAll('[data-pipeline-column]');
-  if (!cards.length || !columns.length) return;
-
-  let draggedCard = null;
-
-  cards.forEach((card) => {
-    card.setAttribute('draggable', 'true');
-    card.addEventListener('dragstart', (event) => {
-      draggedCard = event.currentTarget;
-      event.dataTransfer.effectAllowed = 'move';
-      setTimeout(() => draggedCard.classList.add('dragging'), 0);
-    });
-
-    card.addEventListener('dragend', () => {
-      if (draggedCard) {
-        draggedCard.classList.remove('dragging');
-        draggedCard = null;
-      }
-    });
-  });
-
-  columns.forEach((column) => {
-    column.addEventListener('dragover', (event) => {
-      event.preventDefault();
-      event.dataTransfer.dropEffect = 'move';
-    });
-
-    column.addEventListener('drop', () => {
-      if (draggedCard) {
-        column.appendChild(draggedCard);
-      }
-    });
-  });
+  render();
 }
 
 function initActivityFeed() {
-  const feedContainer = document.querySelector('[data-activity-feed]');
-  if (!feedContainer) return;
+  const list = document.querySelector("[data-activity-feed]");
+  if (!list) return;
 
-  activityQueue = [
-    { name: 'Jamie Chen', action: 'logged call with Northwind Cloud', time: 'Just now' },
-    { name: 'Haruto Sato', action: 'updated stage for ZenSpace', time: '5 min ago' },
-    { name: 'Priya Desai', action: 'added expansion opportunity', time: '12 min ago' },
-    { name: 'Maya Alvarez', action: 'shared Q2 pipeline review deck', time: '20 min ago' }
-  ];
+  const render = () => {
+    list.innerHTML = "";
 
-  const renderFeed = () => {
-    feedContainer.innerHTML = '';
-    activityQueue.slice(0, 6).forEach((entry) => {
-      const item = document.createElement('div');
-      item.className = 'feed-item';
-      item.innerHTML = `
-        <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
-        <div>
+    state.activity.slice(0, 6).forEach((entry) => {
+      const row = document.createElement("div");
+      row.className = "crm-activity-item";
+      row.innerHTML = `
+        <div class="crm-activity-avatar" aria-hidden="true">${getInitials(entry.name)}</div>
+        <div class="crm-activity-content">
           <strong>${entry.name}</strong>
-          <p class="text-muted">${entry.action}</p>
+          <p>${entry.action}</p>
           <time>${entry.time}</time>
         </div>
       `;
-      feedContainer.appendChild(item);
+      list.appendChild(row);
     });
   };
 
-  renderFeed();
+  render();
 
-  if (feedInterval) clearInterval(feedInterval);
-  feedInterval = setInterval(() => {
-    const templates = [
-      { name: 'Ravi Kapoor', action: 'deployed automation recipe to production', time: 'moments ago' },
-      { name: 'Alana Brooks', action: 'closed renewal with WellnessWorks', time: '2 min ago' },
-      { name: 'Daniel King', action: 'launched nurture campaign for APAC', time: '6 min ago' },
-      { name: 'Alex Morgan', action: 'commented on enterprise pipeline board', time: '9 min ago' }
-    ];
-    const update = templates[Math.floor(Math.random() * templates.length)];
-    activityQueue.unshift(update);
-    if (activityQueue.length > 12) activityQueue.pop();
-    renderFeed();
+  const updates = [
+    { name: "Maya Alvarez", action: "shared Q2 performance review", time: "just now" },
+    { name: "Priya Desai", action: "advanced FinEdge to proposal stage", time: "1 min ago" },
+    { name: "Jamie Chen", action: "added notes to enterprise account", time: "3 min ago" },
+    { name: "Alex Morgan", action: "updated renewal health score", time: "5 min ago" }
+  ];
+
+  setInterval(() => {
+    const next = updates[Math.floor(Math.random() * updates.length)];
+    state.activity.unshift(next);
+    if (state.activity.length > 12) state.activity.pop();
+    render();
   }, 7000);
 }
 
-function bindTopbarActions() {
-  const sidebarToggle = document.querySelector('[data-sidebar-toggle]');
-  const sidebar = document.querySelector('[data-sidebar]');
-
-  sidebarToggle?.addEventListener('click', () => {
-    sidebar?.classList.toggle('open');
-  });
+function getInitials(name) {
+  return String(name)
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join("");
 }
+

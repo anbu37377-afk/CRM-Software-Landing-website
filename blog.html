@@ -40,6 +40,7 @@
           <span class="sr-only">Toggle dark mode</span>
         </button>
         <a class="btn btn-outline" href="login.html">Log in</a>
+        <a class="btn btn-primary" href="register.html">Sign up</a>
         <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa-solid fa-bars"></i>
@@ -56,6 +57,7 @@
       <a href="contact.html" data-nav-link>Contact</a>
       <a href="dashboard.html" data-nav-link>Dashboard</a>
       <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+      <a href="register.html" class="btn btn-primary" data-nav-link>Sign up</a>
     </div>
   </header>
 
@@ -86,22 +88,43 @@
         <h2 class="section-title">Find the insights you need</h2>
         <div class="resource-categories">
           <div class="resource-category" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-user"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="7.5" r="3.5"></circle>
+                <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
+              </svg>
+            </span>
             <strong>Sales leadership</strong>
             <p class="text-muted">Forecasting tactics, pipeline reviews, and deal coaching tips.</p>
           </div>
           <div class="resource-category" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-bullhorn"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <path d="M4 11h3l8-4v10l-8-4H4z"></path>
+                <path d="M7 13v5"></path>
+                <path d="M17 10h2"></path>
+              </svg>
+            </span>
             <strong>Marketing ops</strong>
             <p class="text-muted">Lifecycle playbooks, ABM frameworks, and data-driven attribution.</p>
           </div>
           <div class="resource-category" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-heart-pulse"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <path d="M12 20s-7.5-4.6-7.5-10.1a4.4 4.4 0 0 1 7.7-2.9A4.4 4.4 0 0 1 20 9.9C20 15.4 12 20 12 20z"></path>
+                <path d="M7 12h2l1.3-2.4 2.1 4.6 1.2-2.2H17"></path>
+              </svg>
+            </span>
             <strong>Customer success</strong>
             <p class="text-muted">Health scoring, renewal strategies, and onboarding best practices.</p>
           </div>
           <div class="resource-category" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-microchip"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                <path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"></path>
+              </svg>
+            </span>
             <strong>Product updates</strong>
             <p class="text-muted">New feature launches, roadmap previews, and release notes.</p>
           </div>
@@ -111,16 +134,18 @@
 
     <section class="section" id="articles">
       <div class="container">
-        <div class="faq-search" role="search">
-          <i class="fa-solid fa-search"></i>
-          <input type="search" placeholder="Search resources" aria-label="Search resources">
-        </div>
-        <div class="filters">
-          <button class="filter-chip active">All</button>
-          <button class="filter-chip">Sales</button>
-          <button class="filter-chip">Marketing</button>
-          <button class="filter-chip">Success</button>
-          <button class="filter-chip">Product</button>
+        <div class="blog-controls">
+          <div class="faq-search" role="search">
+            <i class="fa-solid fa-search"></i>
+            <input type="search" placeholder="Search resources" aria-label="Search resources">
+          </div>
+          <div class="filters">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">Sales</button>
+            <button class="filter-chip">Marketing</button>
+            <button class="filter-chip">Success</button>
+            <button class="filter-chip">Product</button>
+          </div>
         </div>
         <div class="blog-grid">
           <article class="surface-card blog-card" data-reveal>
@@ -172,8 +197,8 @@
     </section>
 
     <section class="section">
-      <div class="container grid grid-2">
-        <div class="surface-card" data-reveal>
+      <div class="container grid grid-2 blog-media-grid">
+        <div class="surface-card blog-media-card" data-reveal>
           <span class="chip"><i class="fa-solid fa-video"></i> Webinars</span>
           <h3>Upcoming live sessions</h3>
           <ul class="feature-card" role="list">
@@ -183,11 +208,11 @@
           </ul>
           <a class="btn btn-outline" href="#">Reserve a seat</a>
         </div>
-        <div class="surface-card" data-reveal>
+        <div class="surface-card blog-media-card" data-reveal>
           <span class="chip"><i class="fa-solid fa-podcast"></i> Podcast</span>
           <h3>Listen to Pulse On Air</h3>
           <p class="section-description">Weekly conversations with operators reshaping revenue operations, featuring tactical deep dives, frameworks, and leadership lessons.</p>
-          <div class="hero-actions">
+          <div class="hero-actions blog-media-actions">
             <a class="btn btn-primary" href="#">Subscribe on Spotify</a>
             <a class="btn btn-outline" href="#">View episode library</a>
           </div>
@@ -225,9 +250,9 @@
         </a>
         <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
         <div class="socials" aria-label="Social media">
-          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="PulseCRM on LinkedIn"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A1.97 1.97 0 1 0 5.25 6.94 1.97 1.97 0 0 0 5.25 3zM20.44 13.7c0-3.4-1.81-4.98-4.22-4.98-1.94 0-2.8 1.07-3.28 1.82V8.5H9.56c.05 1.35 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.39 1.96-1.39 1.38 0 1.93 1.05 1.93 2.59V20H20.44v-6.3z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.29 19.535h2.04L6.486 3.2H4.298l13.313 17.488Z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
         </div>
       </div>
       <div>
@@ -275,3 +300,4 @@
   <script src="js/main.js" defer></script>
 </body>
 </html>
+

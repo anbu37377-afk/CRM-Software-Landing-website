@@ -61,6 +61,7 @@
           <span class="sr-only">Toggle dark mode</span>
         </button>
         <a class="btn btn-outline" href="login.html">Log in</a>
+        <a class="btn btn-primary" href="register.html">Sign up</a>
         <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa-solid fa-bars"></i>
@@ -77,6 +78,7 @@
       <a href="contact.html" data-nav-link>Contact</a>
       <a href="dashboard.html" data-nav-link>Dashboard</a>
       <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+      <a href="register.html" class="btn btn-primary" data-nav-link>Sign up</a>
     </div>
   </header>
 
@@ -88,7 +90,6 @@
           <h1>Grow revenue faster with a CRM your teams love</h1>
           <p>PulseCRM gives every revenue team a single source of truth, live analytics, and powerful automation to close deals faster, delight customers, and scale operations.</p>
           <div class="hero-actions">
-            <a class="btn btn-outline" href="login.html">Log in</a>
             <a class="btn btn-outline" href="dashboard.html">Explore demo dashboard</a>
           </div>
           <div class="hero-metrics">
@@ -131,7 +132,13 @@
         <p class="section-description">PulseCRM unifies sales, marketing, and support with an intuitive workspace, predictive insights, and intelligent automation that adapts to your playbooks.</p>
         <div class="grid grid-3">
           <article class="surface-card feature-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-rocket"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M13.5 3.5c3.2 0 5.8 2.6 5.8 5.8v1.9l-7.1 7.1h-2l-5.5-5.5v-2c0-4 3.2-7.3 7.3-7.3h1.5Z"></path>
+                <circle cx="14.2" cy="8.3" r="1.2"></circle>
+                <path d="m8.2 17.8-3 3"></path>
+              </svg>
+            </span>
             <h3>Guided Sales Workflows</h3>
             <p>Set nudges for stuck deals, automate follow-ups, and prioritize high-intent opportunities with AI-powered scoring.</p>
             <ul>
@@ -141,7 +148,11 @@
             </ul>
           </article>
           <article class="surface-card feature-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-comments"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M20 14a4 4 0 0 1-4 4H9l-5 3V8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6Z"></path>
+              </svg>
+            </span>
             <h3>Omnichannel Engagement</h3>
             <p>Centralize every customer touchpoint with native email, live chat, phone, and social integrations.</p>
             <ul>
@@ -151,7 +162,12 @@
             </ul>
           </article>
           <article class="surface-card feature-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-chart-pie"></i></span>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24">
+                <path d="M12 3v9h9"></path>
+                <path d="M21 12a9 9 0 1 1-9-9"></path>
+              </svg>
+            </span>
             <h3>Real-time Revenue Analytics</h3>
             <p>Monitor pipeline health, forecast accuracy, and team performance with customizable live dashboards.</p>
             <ul>
@@ -166,24 +182,24 @@
 
     <section class="section">
       <div class="container grid grid-2">
-        <div class="surface-card" data-reveal>
+        <div class="surface-card home-demo-card" data-reveal>
           <span class="chip"><i class="fa-solid fa-gauge-high"></i> Live Product Demo</span>
           <h2 class="section-title">Get a feel for PulseCRM in minutes</h2>
           <p class="section-description">Jump into a curated interactive workspace to explore live analytics, smart automation, and customizable pipeline views.</p>
-          <ul class="feature-card" role="list">
+          <ul class="demo-list" role="list">
             <li>Switch between sales, marketing, and service boards</li>
             <li>Personalize dashboards with drag-and-drop widgets</li>
             <li>Test automation recipes in a safe sandbox</li>
           </ul>
           <a class="btn btn-primary" href="dashboard.html">Launch interactive demo</a>
         </div>
-        <div class="surface-card" data-reveal>
+        <div class="surface-card integrations-card" data-reveal>
           <h3>Powerful integrations</h3>
           <p class="section-description">Connect PulseCRM with 120+ tools including Slack, HubSpot, Gong, Office 365, and Stripe via native connectors and open APIs.</p>
           <div class="logo-grid">
-            <img src="https://images.unsplash.com/photo-1512746432098-99d019ebcbaa?w=400" alt="Integrations collage" class="lazy-image loaded">
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=400" alt="Team collaborating in front of dashboard" class="lazy-image loaded">
-            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=400" alt="Marketing analytics screen" class="lazy-image loaded">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=640&amp;q=80" alt="Integrations collage" class="lazy-image loaded">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&amp;fit=crop&amp;w=640&amp;q=80" alt="Team collaborating in front of dashboard" class="lazy-image loaded">
+            <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&amp;fit=crop&amp;w=640&amp;q=80" alt="Marketing analytics screen" class="lazy-image loaded">
           </div>
         </div>
       </div>
@@ -258,9 +274,9 @@
         </a>
         <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
         <div class="socials" aria-label="Social media">
-          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="PulseCRM on LinkedIn"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A1.97 1.97 0 1 0 5.25 6.94 1.97 1.97 0 0 0 5.25 3zM20.44 13.7c0-3.4-1.81-4.98-4.22-4.98-1.94 0-2.8 1.07-3.28 1.82V8.5H9.56c.05 1.35 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.39 1.96-1.39 1.38 0 1.93 1.05 1.93 2.59V20H20.44v-6.3z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.29 19.535h2.04L6.486 3.2H4.298l13.313 17.488Z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
         </div>
       </div>
       <div>
@@ -308,3 +324,5 @@
   <script src="js/main.js" defer></script>
 </body>
 </html>
+
+

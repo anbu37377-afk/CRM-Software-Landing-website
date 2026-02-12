@@ -36,6 +36,7 @@
           <span class="sr-only">Toggle dark mode</span>
         </button>
         <a class="btn btn-outline" href="login.html">Log in</a>
+        <a class="btn btn-primary" href="register.html">Sign up</a>
         <button class="nav-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-navigation">
           <span class="sr-only">Toggle navigation</span>
           <i class="fa-solid fa-bars"></i>
@@ -52,39 +53,50 @@
       <a href="contact.html" data-nav-link>Contact</a>
       <a href="dashboard.html" data-nav-link>Dashboard</a>
       <a href="login.html" class="btn btn-outline" data-nav-link>Log in</a>
+      <a href="register.html" class="btn btn-primary" data-nav-link>Sign up</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container hero-grid">
-        <div data-reveal>
+        <div class="home2-hero-copy" data-reveal>
           <span class="section-subtitle">Alternative Homepage</span>
           <h1>Experience PulseCRM Your Way</h1>
           <p>A fresh perspective on customer relationship management with the same powerful features you love.</p>
+          <p class="home2-hero-secondary">Built for growing revenue teams, PulseCRM combines guided pipelines,
+            lifecycle automation, and customer intelligence so every interaction moves deals forward.</p>
+          <ul class="home2-hero-list">
+            <li><i class="fa-solid fa-bolt"></i> AI-driven next best actions for every deal stage</li>
+            <li><i class="fa-solid fa-layer-group"></i> Unified sales, marketing, and support workspace</li>
+            <li><i class="fa-solid fa-clock-rotate-left"></i> Live forecasting with minute-by-minute pipeline health
+            </li>
+          </ul>
           <div class="hero-actions">
             <a class="btn btn-primary" href="pricing.html">Get Started</a>
             <a class="btn btn-outline" href="dashboard.html">View Demo</a>
           </div>
         </div>
-        <div class="surface-card" data-reveal>
-          <h2 class="section-title">Why Choose This View?</h2>
-          <p class="section-description">This alternative homepage highlights different aspects of PulseCRM's capabilities while maintaining the same core functionality.</p>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <span class="stat-pill">Design</span>
-              <strong>Clean Layout</strong>
-              <p class="text-muted">Focused on clarity and ease of use</p>
+        <div class="hero-demo home2-hero-demo" data-reveal>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+            alt="Revenue dashboard analytics preview" class="home2-hero-image">
+          <div class="home2-hero-meta">
+            <span class="badge-pill"><i class="fa-solid fa-shield-halved"></i> SOC2-ready</span>
+            <span class="badge-pill"><i class="fa-solid fa-plug"></i> 120+ integrations</span>
+            <span class="badge-pill"><i class="fa-solid fa-headset"></i> 24/7 support</span>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <strong>3.2x</strong>
+              <span>Pipeline velocity uplift</span>
             </div>
-            <div class="stat-card">
-              <span class="stat-pill">Features</span>
-              <strong>Full Power</strong>
-              <p class="text-muted">All CRM capabilities included</p>
+            <div class="metric-card">
+              <strong>32%</strong>
+              <span>More accurate forecasting</span>
             </div>
-            <div class="stat-card">
-              <span class="stat-pill">Support</span>
-              <strong>24/7 Help</strong>
-              <p class="text-muted">Always here when you need us</p>
+            <div class="metric-card">
+              <strong>19%</strong>
+              <span>Lower customer churn</span>
             </div>
           </div>
         </div>
@@ -96,18 +108,36 @@
         <span class="section-subtitle">Key Benefits</span>
         <h2 class="section-title">Everything You Need in One Place</h2>
         <div class="grid grid-3">
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-chart-line"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <path d="M4 19h16"></path>
+                <path d="M6.5 15.5l4-4 3 2.8 4-5.3"></path>
+                <path d="M17.5 9h2v2"></path>
+              </svg>
+            </span>
             <h3>Advanced Analytics</h3>
             <p>Deep insights into your sales pipeline and customer behavior patterns.</p>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-users"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <circle cx="9" cy="9" r="2.5"></circle>
+                <circle cx="16" cy="8" r="2"></circle>
+                <path d="M4.5 18a4.5 4.5 0 0 1 9 0"></path>
+                <path d="M13 18a3.5 3.5 0 0 1 7 0"></path>
+              </svg>
+            </span>
             <h3>Team Collaboration</h3>
             <p>Work together seamlessly with shared workspaces and real-time updates.</p>
           </article>
-          <article class="surface-card" data-reveal>
-            <span class="icon-circle"><i class="fa-solid fa-shield-halved"></i></span>
+          <article class="surface-card feature-card" data-reveal>
+            <span class="icon-circle" aria-hidden="true">
+              <svg class="feature-icon" viewBox="0 0 24 24" focusable="false">
+                <path d="M12 3.5 5.5 6v5.8c0 4 2.7 7.5 6.5 8.7 3.8-1.2 6.5-4.7 6.5-8.7V6L12 3.5Z"></path>
+                <path d="m9.5 12.2 1.8 1.8 3.3-3.5"></path>
+              </svg>
+            </span>
             <h3>Enterprise Security</h3>
             <p>Bank-level security and compliance to keep your data safe.</p>
           </article>
@@ -141,9 +171,9 @@
         </a>
         <p>PulseCRM is the modern customer relationship intelligence platform helping revenue teams orchestrate connected customer journeys.</p>
         <div class="socials" aria-label="Social media">
-          <a href="#" aria-label="PulseCRM on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="#" aria-label="PulseCRM on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" aria-label="PulseCRM on YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="PulseCRM on LinkedIn"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3A1.97 1.97 0 1 0 5.25 6.94 1.97 1.97 0 0 0 5.25 3zM20.44 13.7c0-3.4-1.81-4.98-4.22-4.98-1.94 0-2.8 1.07-3.28 1.82V8.5H9.56c.05 1.35 0 11.5 0 11.5h3.38v-6.42c0-.34.02-.68.12-.92.27-.68.9-1.39 1.96-1.39 1.38 0 1.93 1.05 1.93 2.59V20H20.44v-6.3z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on Twitter"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.847h-7.406l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.29 19.535h2.04L6.486 3.2H4.298l13.313 17.488Z"/></svg></a>
+          <a href="#" aria-label="PulseCRM on YouTube"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg></a>
         </div>
       </div>
       <div>
@@ -191,3 +221,5 @@
   <script src="js/main.js" defer></script>
 </body>
 </html>
+
+
