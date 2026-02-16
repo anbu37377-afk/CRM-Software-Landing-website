@@ -230,7 +230,14 @@ p {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+
+.crm-header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  white-space: nowrap;
 }
 
 .crm-menu-toggle {
@@ -245,6 +252,7 @@ p {
   gap: 0.24rem;
   flex-direction: column;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .crm-menu-toggle span {

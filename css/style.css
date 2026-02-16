@@ -1389,7 +1389,7 @@ h1 {
   align-items: center;
   justify-content: flex-start;
   gap: 0.6rem;
-  width: 100%;
+  width: auto;
   color: var(--color-heading);
   font-weight: 600;
 }
@@ -1403,6 +1403,20 @@ h1 {
 .auth-check input {
   margin: 0;
   width: auto;
+}
+
+.auth-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-block: 0.25rem 0.5rem;
+}
+
+.auth-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
 }
 
 .auth-card .btn-primary {

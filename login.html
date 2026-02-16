@@ -35,16 +35,15 @@
           <label for="login-password">Password</label>
           <input type="password" id="login-password" name="password" placeholder="Enter password" minlength="8"
             required>
-          <div style="text-align: right; margin-top: 0.35rem;">
-            <a href="reset-password.html" class="auth-link"
-              style="font-size: 0.85rem; font-weight: 600; color: var(--color-primary);">Forgot password?</a>
-          </div>
           <span class="form-error" aria-live="polite"></span>
         </div>
-        <label class="auth-check">
-          <input type="checkbox" name="remember">
-          <span>Remember me</span>
-        </label>
+        <div class="auth-options">
+          <label class="auth-check">
+            <input type="checkbox" name="remember">
+            <span>Remember me</span>
+          </label>
+          <a href="reset-password.html" class="auth-link">Forgot password?</a>
+        </div>
         <button class="btn btn-primary" type="submit">Log in</button>
       </form>
       <div class="card-divider"></div>
