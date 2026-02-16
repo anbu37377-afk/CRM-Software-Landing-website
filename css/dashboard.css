@@ -190,11 +190,11 @@ p {
   transition: transform 0.25s ease;
 }
 
-.crm-switch input:checked + .crm-slider {
+.crm-switch input:checked+.crm-slider {
   background: var(--primary);
 }
 
-.crm-switch input:checked + .crm-slider::after {
+.crm-switch input:checked+.crm-slider::after {
   transform: translateX(1.2rem);
 }
 
@@ -414,6 +414,13 @@ p {
   font-weight: 700;
   padding: 0.67rem 0.95rem;
   cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.crm-task-form button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: #fff;
 }
 
 .crm-task-list,
@@ -629,4 +636,3 @@ p {
     overflow: visible;
   }
 }
-
