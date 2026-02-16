@@ -2482,3 +2482,13 @@ body[data-rtl="true"] .dashboard {
     padding: 2rem;
   }
 }
+
+/* Social Hub Hover Interactions */
+.social-hub-list a {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.social-hub-list a:hover {
+  transform: translateY(-8px) scale(1.1);
+  filter: drop-shadow(0 10px 20px rgba(37, 99, 235, 0.3));
+}
